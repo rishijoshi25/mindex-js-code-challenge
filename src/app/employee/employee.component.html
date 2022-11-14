@@ -1,12 +1,25 @@
+<!-- Create the employee card-->
 <mat-card class="employee">
-  <mat-card-header>
-    <mat-card-title>{{employee.lastName}}, {{employee.firstName}}</mat-card-title>
-    <mat-card-subtitle>{{employee.id}}</mat-card-subtitle>
+  <mat-card-header class="empName" >
+    <!-- Display the employee details -->
+    <mat-card-title>{{employee.lastName}}, {{employee.firstName}} : {{employee.position}}</mat-card-title>
+    <mat-card-subtitle>Employee ID: {{employee.id}} | Number of Direct Reports: {{totalReports}}
+      <!-- Display compensation if it is added -->
+      <p *ngIf="employee.compensation" style="color: green">Compensation: ${{employee.compensation}}</p>
+    </mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <dl>
-      <dt>Job Title</dt>
-      <dd>{{employee.position}}</dd>
-    </dl>
+    <!-- List the reporting employees -->
+    <mat-card-subtitle class="reportHeader">Reporting Employees:</mat-card-subtitle>
+    <!-- Loop through the reports array -->
+    <div class="report" *ngFor="let report of employee.reports">
+      <!-- Display the details of the reporting employees -->
+      <p class="reportName">{{report.firstName}} {{report.lastName}}: - Position: {{report.position}}</p>
+      <mat-card-actions class="buttons">
+        <button mat-flat-button  color="accent" (click)="editEmployee(report.id)">Edit</button>
+        <button mat-flat-button color="warn" (click)="deleteEmployee(report.id)">Delete</button>
+      </mat-card-actions>
+    </div>
   </mat-card-content>
 </mat-card>
+<app-dialog></app-dialog>

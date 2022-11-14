@@ -1,5 +1,10 @@
-<mat-grid-list class="employee-list" cols="4">
-  <mat-grid-tile *ngFor="let emp of employees">
-    <app-employee [employee]="emp"></app-employee>
-  </mat-grid-tile>
-</mat-grid-list>
+<mat-list>
+  <!-- Preform relevant actions for the employees -->
+  <mat-list-title *ngFor="let emp of employees">
+    <app-employee
+      (editOperation)= "performEditOperation($event)"
+      (deleteOperation)= "performDeleteOperation($event)"
+      [employee]="emp">
+    </app-employee>
+  </mat-list-title>
+</mat-list>

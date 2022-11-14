@@ -11,16 +11,20 @@ import {EmployeeListComponent} from './employee-list/employee-list.component';
 import {EmployeeService} from './employee.service';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatListModule} from '@angular/material/list';
 import {MatInputModule} from '@angular/material/input';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {DialogComponent} from './dialog/dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeeComponent,
-    EmployeeListComponent
+    EmployeeListComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -36,12 +40,17 @@ import {MatButtonModule} from '@angular/material/button';
     }),
     MatCardModule,
     MatGridListModule,
+    MatListModule,
     MatInputModule,
     MatMenuModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule
   ],
-  providers: [EmployeeService],
+  providers: [{ provide: DialogComponent, useValue: {} },
+    { provide: MatDialogRef, useValue: {} },
+    { provide: MAT_DIALOG_DATA, useValue: {} },
+    EmployeeService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

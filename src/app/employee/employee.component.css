@@ -1,0 +1,30 @@
+button{
+  margin-right: 5px;
+}
+.empName{
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 500;
+}
+.report{
+  background-color: #FBE7C6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding:5px 5px;
+}
+.reportHeader{
+  background-color: #A0E7E5;
+  padding: 8px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-style: bold;
+}
+.reportName{
+  margin-bottom: 1px;
+  margin-top: 1px;
+  float: left;
+  font-family: "Gill Sans", sans-serif;
+}
+.buttons{
+  min-width: 20px;
+  flex-direction: row;
+}

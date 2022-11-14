@@ -4,4 +4,6 @@ export class Employee {
   lastName: string;
   position: string;
   directReports?: Array<number>;
+  reports?:Array<Employee>;
+  compensation: number;
 }

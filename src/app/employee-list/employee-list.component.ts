@@ -29,4 +29,29 @@ export class EmployeeListComponent implements OnInit {
     console.error(e);
     return this.errorMessage = e.message || 'Unable to retrieve employees';
   }
+
+  //Function for performing the edit operation
+  performEditOperation(res){
+    this.employeeService.save(res.employee).subscribe(response => {
+      this.employees.forEach(emp => {
+        //Update the compenstion for the given employee
+        if(emp.id === response.id){
+          emp.compensation = response.compensation;
+        }
+      })
+    });
+  }
+
+  //Function for performing the delete operation
+  performDeleteOperation(res){
+    this.employeeService.remove(res.employee);
+    this.employees.forEach(emp => {
+      if(emp.directReports){
+        //Filter deleted employees
+        emp.directReports = emp.directReports.filter(report => report !== emp.id)
+      }
+      //Filter deleted employees
+      emp.reports = emp.reports.filter(e => e.id !== res.employee.id)
+    })
+  }
 }
